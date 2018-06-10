@@ -343,9 +343,16 @@
       
         
           
-            <p>博客开通了，这是第一篇文章，以后会在这个博客里分享一些技术贴和一些有趣的东西，欢迎撒~</p>
+          博客开通了，这是第一篇文章，以后会在这个博客里分享一些技术贴和一些有趣的东西，欢迎撒~
 
           
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2018/06/08/hello/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -486,7 +493,7 @@
           
             <div class="post-gallery-row">
               <a class="post-gallery-img fancybox"
-                 href="/Leetcode-463-思路分析与代码示例-Python3/lc463.png" rel="gallery_cji89pgb40000rk7go440h5pz"
+                 href="/Leetcode-463-思路分析与代码示例-Python3/lc463.png" rel="gallery_cji89rkq80000c87gdmoem6bk"
                  itemscope itemtype="http://schema.org/ImageObject" itemprop="url">
                 <img src="/Leetcode-463-思路分析与代码示例-Python3/lc463.png" itemprop="contentUrl"/>
               </a>
@@ -501,9 +508,16 @@
       
         
           
-            <h1 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h1><p><img src="/2018/06/06/Leetcode-463-思路分析与代码示例-Python3/lc463.png" alt="题目"></p>
-<h1 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h1><h4 id="由题意可知，我们需要计算岛屿的周长，大概的想法是先在给的示例的外围加上一圈空白格，然后对于每个单位的正方体，检查周围是否有岛屿单位存在，若四周有i个单位-0-lt-i-lt-4-个单位，则为总周长贡献了-4-i-个单位的长度，然后遍历每个格子即可。"><a href="#由题意可知，我们需要计算岛屿的周长，大概的想法是先在给的示例的外围加上一圈空白格，然后对于每个单位的正方体，检查周围是否有岛屿单位存在，若四周有i个单位-0-lt-i-lt-4-个单位，则为总周长贡献了-4-i-个单位的长度，然后遍历每个格子即可。" class="headerlink" title="由题意可知，我们需要计算岛屿的周长，大概的想法是先在给的示例的外围加上一圈空白格，然后对于每个单位的正方体，检查周围是否有岛屿单位存在，若四周有i个单位(0&lt;=i&lt;=4)个单位，则为总周长贡献了(4-i)个单位的长度，然后遍历每个格子即可。"></a>由题意可知，我们需要计算岛屿的周长，大概的想法是先在给的示例的外围加上一圈空白格，然后对于每个单位的正方体，检查周围是否有岛屿单位存在，若四周有i个单位(0&lt;=i&lt;=4)个单位，则为总周长贡献了(4-i)个单位的长度，然后遍历每个格子即可。</h4><h1 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h1><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">islandPerimeter</span><span class="params">(self, grid)</span>:</span></span><br><span class="line">        <span class="string">"""</span></span><br><span class="line"><span class="string">        :type grid: List[List[int]]</span></span><br><span class="line"><span class="string">        :rtype: int</span></span><br><span class="line"><span class="string">        """</span></span><br><span class="line">        sum = <span class="number">0</span></span><br><span class="line">        height = len(grid)</span><br><span class="line">        width = len(grid[<span class="number">0</span>])</span><br><span class="line">        <span class="keyword">for</span> row <span class="keyword">in</span> grid:</span><br><span class="line">            row.insert(<span class="number">0</span>,<span class="number">0</span>)</span><br><span class="line">            row.append(<span class="number">0</span>)</span><br><span class="line">        grid.insert(<span class="number">0</span>,[<span class="number">0</span> <span class="keyword">for</span> i <span class="keyword">in</span> range(width+<span class="number">2</span>)])</span><br><span class="line">        grid.append([<span class="number">0</span> <span class="keyword">for</span> i <span class="keyword">in</span> range(width+<span class="number">2</span>)])</span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">1</span>,height+<span class="number">1</span>):</span><br><span class="line">            <span class="keyword">for</span> j <span class="keyword">in</span> range(<span class="number">1</span>,width+<span class="number">1</span>):</span><br><span class="line">                <span class="keyword">if</span> grid[i][j]==<span class="number">1</span>:</span><br><span class="line">                    <span class="keyword">if</span> grid[i<span class="number">-1</span>][j]==<span class="number">0</span>:</span><br><span class="line">                        sum+=<span class="number">1</span></span><br><span class="line">                    <span class="keyword">if</span> grid[i+<span class="number">1</span>][j]==<span class="number">0</span>:</span><br><span class="line">                        sum+=<span class="number">1</span></span><br><span class="line">                    <span class="keyword">if</span> grid[i][j+<span class="number">1</span>]==<span class="number">0</span>:</span><br><span class="line">                        sum+=<span class="number">1</span></span><br><span class="line">                    <span class="keyword">if</span> grid[i][j<span class="number">-1</span>]==<span class="number">0</span>:</span><br><span class="line">                        sum+=<span class="number">1</span></span><br><span class="line">        <span class="keyword">return</span> sum</span><br></pre></td></tr></table></figure>
-          
+          题目
+思路由题意可知，我们需要计算岛屿的周长，大概的想法是先在给的示例的外围加上一圈空白格，然后对于每个单位的正方体，检查周围是否有岛屿单位存在，若四周有i个单位(0&lt;=i&lt;=4)个单位，则为总周长贡献了(4-i)个单位的长度，然后遍历每个格子即可。代码12345678910111213
+          ...
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2018/06/06/Leetcode-463-思路分析与代码示例-Python3/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
